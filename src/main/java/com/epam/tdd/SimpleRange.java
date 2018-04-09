@@ -28,7 +28,8 @@ public class SimpleRange implements Range {
 
     @Override
     public boolean isConcurrent(Range otherRange) {
-        return false;
+        return upperBound >= otherRange.getLowerBound()
+                || lowerBound <= otherRange.getUpperBound();
     }
 
     @Override
