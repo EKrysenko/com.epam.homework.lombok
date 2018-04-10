@@ -1,9 +1,12 @@
 package com.epam.tdd;
 
+import lombok.AllArgsConstructor;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+@AllArgsConstructor
 public class SimpleRange implements Range {
 
     private long lowerBound;
@@ -28,8 +31,8 @@ public class SimpleRange implements Range {
 
     @Override
     public boolean isConcurrent(Range otherRange) {
-        return upperBound >= otherRange.getLowerBound()
-                || lowerBound <= otherRange.getUpperBound();
+        return upperBound >= otherRange.getLowerBound() && !isAfter(otherRange)
+                || lowerBound <= otherRange.getUpperBound() && !isBefore(otherRange);
     }
 
     @Override
